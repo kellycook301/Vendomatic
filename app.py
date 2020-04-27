@@ -85,6 +85,13 @@ def update_beverage(id):
 
     return beverage_schema.jsonify(beverage)
 
+@app.route('/beverage/<id>', methods=['DELETE'])
+def delete_beverage(id):
+    beverage = Beverage.query.get(id)
+    db.session.delete(beverage)
+    db.session.commit()
+    return beverage_schema.jsonify(beverage)
+
 # Run server
 if __name__ == '__main__':
     app.run(debug=True)
