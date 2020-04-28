@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
 
+# Creating a vending machine application that the user may interact with.
+# Looking to have the user interact with the data via the command line
+
 # Init App
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
