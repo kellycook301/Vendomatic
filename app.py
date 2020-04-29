@@ -105,6 +105,6 @@ def delete_beverage(id):
 
 # Let's start this sucker...
 
-# Run server
+# Run the freaking server
 if __name__ == '__main__':
     app.run(debug=True)
