@@ -20,7 +20,7 @@ def vendingMachine():
         print("b) Make A Purchase")
         print("c) Add Drinks")
         print("d) Buzz Off")
-        vend = input("Make a selection / \n").lower().strip()
+        vend = raw_input("Make a selection / \n").lower().strip()
 
     if vend == "a":
         print("")
