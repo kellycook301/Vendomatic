@@ -29,8 +29,6 @@ db = SQLAlchemy(app)
 # Init Marshmallow
 ma = Marshmallow(app)
 
-
-
 # Product Class/Model
 class Beverage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -105,62 +103,7 @@ def delete_beverage(id):
     db.session.commit()
     return beverage_schema.jsonify(beverage)
 
-# Let's start ths sucker...
-
-print ("")
-print ("O==============================================================================O")
-print ("|                             ++ Vending Machine ++                            |")
-print ("|                              Let's Vend Some Stuff                           |")
-print ("O==============================================================================O")
-print ("")
-
-def vendingMachine():
-    vend = ""
-    while vend != "a" and vend != "b" and vend != "c" and vend != "d":
-        print("Welcome to your local vending machine. What the heck do ya wanna do today?")
-        print("a) Check Inventory")
-        print("b) Make A Purchase")
-        print("c) Add Drinks")
-        print("d) Buzz Off")
-        vend = input("").lower().strip()
-
-    if vend == "a":
-        print("")
-        print("")
-        print("Wanna check the inventory, huh?")
-        print("Well, here ya go...")
-        print("")
-        print("")
-        vendingMachine()
-    
-    if vend == "b":
-        print("")
-        print("")
-        print("Wanna make a purchase?")
-        print("Ok fine.")
-        print("")
-        print("")
-        vendingMachine()
-    
-    if vend == "c":
-        print("")
-        print("")
-        print("Wanna load up the inventory?")
-        print("Sure, pal.")
-        print("")
-        print("")
-        vendingMachine()
-
-    if vend == "d":
-        print("")
-        print("")
-        print("Wanna buzz off?")
-        print("Get outta here.")
-        print("")
-        print("")
-        exit()
-
-vendingMachine()
+# Let's start this sucker...
 
 # Run server
 if __name__ == '__main__':
