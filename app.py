@@ -10,10 +10,6 @@ import sys; print(sys.version)
 
 # Curl command examples...
 
-# curl -i -X GET http://127.0.0.1:5000/beverage
-# curl -i -X GET http://127.0.0.1:5000/beverage/1
-# curl -i -X DELETE http://127.0.0.1:5000/beverage/2
-# curl -d "name=Diet Coke&description=awesome soda&price=1.0&quantity=5" -X POST http://127.0.0.1:5000/beverage
 
 # Init App
 app = Flask(__name__)

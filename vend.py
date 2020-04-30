@@ -3,6 +3,8 @@ from flask_marshmallow import Marshmallow
 import os
 import requests
 import sys; print(sys.version)
+from app import Beverage
+from app import beverage_schema
 
 # For the GET
 allBeverages = 'http://127.0.0.1:5000/beverage'
@@ -12,7 +14,7 @@ getAllResponse = requests.get(allBeverages)
 thatOneBeverage = 'http://127.0.0.1:5000/beverage/<id>'
 getOneResponse = requests.get(thatOneBeverage)
 
-# sql = 
+# sql = requests.get(Beverage.id)
 
 print ("")
 print ("O==============================================================================O")
@@ -21,20 +23,18 @@ print ("|                                  Let's Vend                           
 print ("O==============================================================================O")
 print ("")
 
-# def specificId():
-#     spec = ""
-#     while 
-
 def vendingMachine():
     vend = ""
-    query = ""
+    spec = ""
     while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e":
         print("Welcome to your local vending machine. What the heck do ya wanna do today?")
+        print("")
         print("a) Check All Inventory")
         print("b) Check Certain Inventory")
         print("c) Make A Purchase")
         print("d) Add Drinks")
         print("e) Buzz Off")
+        print("")
         vend = input("Make a selection: ").lower().strip()
 
     if vend == "a":
@@ -45,7 +45,7 @@ def vendingMachine():
         print("")
         print(getAllResponse.text)
         print("")
-        print("Happy now? Now what?")
+        print("Happy now?")
         print("")
         vendingMachine()
 
@@ -53,7 +53,9 @@ def vendingMachine():
         print("")
         print("")
         print("Wanna check a specific inventory item?")
-        query = input("Enter specific id: ").lower().strip()
+        spec = input("Enter specific id: ").lower().strip()
+        oneBeverage = Beverage.query.get(id)
+        print(beverage_schema.jsonify(oneBeverage))
         print("")
         print("")
         vendingMachine()
@@ -62,19 +64,19 @@ def vendingMachine():
         print("")
         print("")
         print("Wanna make a purchase?")
-        print("Ok fine.")
+        print("Try again later.")
         print("")
         print("")
-        vendingMachine()
+        exit()
     
     if vend == "d":
         print("")
         print("")
         print("Wanna load up the inventory?")
-        print("Sure, pal.")
+        print("Try again later.")
         print("")
         print("")
-        vendingMachine()
+        exit()
 
     if vend == "e":
         print("")
