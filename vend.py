@@ -6,16 +6,6 @@ import sys; print(sys.version)
 from app import Beverage
 from app import beverage_schema
 
-# For the GET
-allBeverages = 'http://127.0.0.1:5000/beverage'
-getAllResponse = requests.get(allBeverages)
-
-# For the GET for a specific bev
-thatOneBeverage = 'http://127.0.0.1:5000/beverage/<id>'
-getOneResponse = requests.get(thatOneBeverage)
-
-# sql = requests.get(Beverage.id)
-
 print ("")
 print ("O==============================================================================O")
 print ("|                             ++ Vending Machine ++                            |")
@@ -24,8 +14,14 @@ print ("O=======================================================================
 print ("")
 
 def vendingMachine():
+    # For getting all beverages...
+    allBeverages = 'http://127.0.0.1:5000/beverage'
+    getAllBeveragesResponse = requests.get(allBeverages)
+    # For getting one beverage...
+    thatOneBeverage = 'http://127.0.0.1:5000/beverage/'
+    getOneResponse = requests.get(thatOneBeverage)
     vend = ""
-    spec = ""
+    userInput = ""
     while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e":
         print("Welcome to your local vending machine. What the heck do ya wanna do today?")
         print("")
@@ -43,7 +39,7 @@ def vendingMachine():
         print("Wanna check the inventory, huh?")
         print("Well, here ya go...")
         print("")
-        print(getAllResponse.text)
+        print(getAllBeveragesResponse.text)
         print("")
         print("Happy now?")
         print("")
@@ -53,9 +49,10 @@ def vendingMachine():
         print("")
         print("")
         print("Wanna check a specific inventory item?")
-        spec = input("Enter specific id: ").lower().strip()
-        oneBeverage = Beverage.query.get(id)
-        print(beverage_schema.jsonify(oneBeverage))
+        userInput = input("Enter specific id: ").strip()
+        print("")
+        print(requests.get(thatOneBeverage + userInput).text)
+        # print(getOneResponse + userInput)
         print("")
         print("")
         vendingMachine()
