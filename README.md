@@ -48,7 +48,7 @@ python app.py
 python vend.py
 ```
 
-7. Test functionality by performing various requests
+7. Test functionality by performing various requests. Checking all inventory will get back all beverages. For getting a specific beverage, enter an id and see what comes back. If the id doesn't exist, you'll get "{}" as a response. Don't take it personally.
 
 8. Obviously, I gotta add some error handling. Gimme some time, k?
 

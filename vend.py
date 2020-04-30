@@ -22,14 +22,15 @@ def vendingMachine():
     getOneResponse = requests.get(thatOneBeverage)
     vend = ""
     userInput = ""
-    while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e":
+    while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e" and vend != "f":
         print("Welcome to your local vending machine. What the heck do ya wanna do today?")
         print("")
         print("a) Check All Inventory")
         print("b) Check Certain Inventory")
         print("c) Make A Purchase")
         print("d) Add Drinks")
-        print("e) Buzz Off")
+        print("e) Get Rid Of A Beverage")
+        print("f) Buzz Off")
         print("")
         vend = input("Make a selection: ").lower().strip()
 
@@ -52,8 +53,8 @@ def vendingMachine():
         userInput = input("Enter specific id: ").strip()
         print("")
         print(requests.get(thatOneBeverage + userInput).text)
-        # print(getOneResponse + userInput)
         print("")
+        print("Happy now?")
         print("")
         vendingMachine()
     
@@ -76,6 +77,17 @@ def vendingMachine():
         exit()
 
     if vend == "e":
+        print("")
+        print("")
+        print("Wanna get rid of certain items?")
+        userInput = input("Enter specific id: ").strip()
+        print("")
+        print(requests.delete(thatOneBeverage + userInput).text)
+        print("")
+        print("")
+        vendingMachine()
+
+    if vend == "f":
         print("")
         print("")
         print("Buzz off, huh?")
