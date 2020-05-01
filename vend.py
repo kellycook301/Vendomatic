@@ -93,7 +93,7 @@ def vendingMachine():
         vending_machine_password = getpass.getpass('Password:')
         if vending_machine_password == "password":
             addBeverage()
-            print("Beverage added!")
+            print("Beverage/s added!")
             print("")
             vendingMachine()
         else:
@@ -106,10 +106,18 @@ def vendingMachine():
         print("")
         print("")
         print("Wanna get rid of certain items?")
-        deleteOneBeverage()
-        print("Beverage deleted!")
-        print("")
-        vendingMachine()
+        print("Go ahead and enter the super secret password.")
+        vending_machine_password = getpass.getpass('Password:')
+        if vending_machine_password == "password":
+            deleteOneBeverage()
+            print("Beverage/s deleted!")
+            print("")
+            vendingMachine()
+        else:
+            print("")
+            print("Try again, bud.")
+            print("")
+            vendingMachine()
 
     if vend == "f":
         print("")

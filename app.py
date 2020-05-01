@@ -8,9 +8,6 @@ import sys; print(sys.version)
 # Creating a vending machine application that the user may interact with.
 # Looking to have the user interact with the data via the command line
 
-# Curl command examples...
-
-
 # Init App
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
