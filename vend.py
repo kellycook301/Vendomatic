@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_marshmallow import Marshmallow
 import os
 import requests
+import simplejson as json
 import sys; print(sys.version)
 from app import Beverage
 from app import beverage_schema
@@ -13,6 +14,18 @@ print ("|                                  Let's Vend                           
 print ("O==============================================================================O")
 print ("")
 
+def get_inputs():
+    # For adding a beverage...
+    oneBeverage = 'http://127.0.0.1:5000/beverage'
+    header = {"content-type": "application/json"}
+    beveragePost = {}
+    beveragePost["name"] = input("Enter a name: ").strip()
+    beveragePost["description"] = input('Enter item description: ').strip()
+    beveragePost["price"] = input("Enter price of item (no need to add '$'): ").strip()
+    beveragePost["quantity"] = input("Enter how many items you are adding: ").strip()
+    print("")
+    print(requests.post(oneBeverage, data=json.dumps(beveragePost), headers=header, verify=False).text)
+
 def vendingMachine():
     # For getting all beverages...
     allBeverages = 'http://127.0.0.1:5000/beverage'
@@ -22,6 +35,7 @@ def vendingMachine():
     getOneResponse = requests.get(thatOneBeverage)
     vend = ""
     userInput = ""
+    thePost = []
     while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e" and vend != "f":
         print("Welcome to your local vending machine. What the heck do ya wanna do today?")
         print("")
@@ -70,11 +84,11 @@ def vendingMachine():
     if vend == "d":
         print("")
         print("")
-        print("Wanna load up the inventory?")
-        print("Try again later.")
+        print("Wanna load up the inventory? You got it, bud.")
+        get_inputs()
+        print("Beverage added!")
         print("")
-        print("")
-        exit()
+        vendingMachine()
 
     if vend == "e":
         print("")
