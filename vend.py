@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_marshmallow import Marshmallow
-import os
 import requests
 import simplejson as json
-import sys; print(sys.version)
+import getpass
 from app import Beverage
 from app import beverage_schema
+import sys; print(sys.version)
+import os
 
 print ("")
 print ("O==============================================================================O")
@@ -15,7 +16,6 @@ print ("O=======================================================================
 print ("")
 
 def addBeverage():
-    # For adding a beverage...
     oneBeverage = 'http://127.0.0.1:5000/beverage'
     header = {"content-type": "application/json"}
     beveragePost = {}
@@ -27,14 +27,12 @@ def addBeverage():
     print(requests.post(oneBeverage, data=json.dumps(beveragePost), headers=header, verify=False).text)
 
 def getAllBeverages():
-    # For getting all beverages...
     allBeverages = 'http://127.0.0.1:5000/beverage'
     getAllBeveragesResponse = requests.get(allBeverages)
     print("")
     print(getAllBeveragesResponse.text)
 
 def getOneBeverage():
-    # For getting one beverage...
     thatOneBeverage = 'http://127.0.0.1:5000/beverage/'
     getOneResponse = requests.get(thatOneBeverage)
     userInput = input("Enter specific id: ").strip()
@@ -42,13 +40,11 @@ def getOneBeverage():
     print(requests.get(thatOneBeverage + userInput).text)
 
 def deleteOneBeverage():
-    # For deleting one beverage...
     thatOneBeverage = 'http://127.0.0.1:5000/beverage/'
     deleteOneResponse = requests.delete(thatOneBeverage)
     userInput = input("Enter specific id: ").strip()
     print("")
     print(requests.delete(thatOneBeverage + userInput).text)
-
 
 def vendingMachine():
     vend = ""
@@ -61,7 +57,7 @@ def vendingMachine():
         print("c) Make A Purchase")
         print("d) Add Drinks")
         print("e) Get Rid Of A Beverage")
-        print("f) Buzz Off")
+        print("f) Exit Vending Machine")
         print("")
         vend = input("Make a selection: ").lower().strip()
 
@@ -92,11 +88,19 @@ def vendingMachine():
     
     if vend == "d":
         print("")
-        print("Wanna load up the inventory? You got it, bud.")
-        addBeverage()
-        print("Beverage added!")
-        print("")
-        vendingMachine()
+        print("Wanna load up the inventory? You must be a vending machine operator.")
+        print("Go ahead and enter the super secret password.")
+        vending_machine_password = getpass.getpass('Password:')
+        if vending_machine_password == "password":
+            addBeverage()
+            print("Beverage added!")
+            print("")
+            vendingMachine()
+        else:
+            print("")
+            print("Try again, bud.")
+            print("")
+            vendingMachine()
 
     if vend == "e":
         print("")
@@ -110,8 +114,7 @@ def vendingMachine():
     if vend == "f":
         print("")
         print("")
-        print("Buzz off, huh?")
-        print("Get outta here.")
+        print("See ya later, bud.")
         print("")
         print("")
         exit()
