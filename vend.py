@@ -49,17 +49,16 @@ def deleteOneBeverage():
 def vendingMachine():
     vend = ""
     userInput = ""
-    while vend != "a" and vend != "b" and vend != "c" and vend != "d" and vend != "e" and vend != "f":
-        print("Welcome to your local vending machine. What the heck do ya wanna do today?")
-        print("")
-        print("a) Check All Inventory")
-        print("b) Check Certain Inventory")
-        print("c) Make A Purchase")
-        print("d) Add Drinks")
-        print("e) Get Rid Of A Beverage")
-        print("f) Exit Vending Machine")
-        print("")
-        vend = input("Make a selection: ").lower().strip()
+    print("Welcome to your local vending machine. What the heck do ya wanna do today?")
+    print("")
+    print("a) Check All Inventory")
+    print("b) Check Certain Inventory")
+    print("c) Make A Purchase")
+    print("d) Add Drinks")
+    print("e) Get Rid Of A Beverage")
+    print("f) Exit Vending Machine")
+    print("")
+    vend = input("Make a selection: ").lower().strip()
 
     if vend == "a":
         print("")
@@ -70,7 +69,7 @@ def vendingMachine():
         print("")
         vendingMachine()
 
-    if vend == "b":
+    elif vend == "b":
         print("")
         print("Wanna check a specific inventory item?")
         getOneBeverage()
@@ -78,7 +77,7 @@ def vendingMachine():
         print("")
         vendingMachine()
     
-    if vend == "c":
+    elif vend == "c":
         print("")
         print("Wanna make a purchase?")
         print("Try again later.")
@@ -86,7 +85,7 @@ def vendingMachine():
         print("")
         exit()
     
-    if vend == "d":
+    elif vend == "d":
         print("")
         print("Wanna load up the inventory? You must be a vending machine operator.")
         print("Go ahead and enter the super secret password.")
@@ -102,7 +101,7 @@ def vendingMachine():
             print("")
             vendingMachine()
 
-    if vend == "e":
+    elif vend == "e":
         print("")
         print("")
         print("Wanna get rid of certain items?")
@@ -119,12 +118,20 @@ def vendingMachine():
             print("")
             vendingMachine()
 
-    if vend == "f":
+    elif vend == "f":
         print("")
         print("")
         print("See ya later, bud.")
         print("")
         print("")
         exit()
+
+    else:
+        print("")
+        print("")
+        print("Try typing something that I actually understand, dummy.")
+        print("")
+        print("")
+        vendingMachine()
 
 vendingMachine()
