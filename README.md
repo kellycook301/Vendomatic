@@ -20,12 +20,12 @@ git clone git@github.com:kellycook301/pythonCLItest.git
 install pip
 ```
 
-3. Install pipenv if you don't got it
+3. Install pipenv if you don't have that either
 ```
 install pipenv
 ```
 
-4. You are also gonna need Flask, SQLAlchemy, and Marshmallow (yay dependencies!)
+1. You are also gonna need Flask, SQLAlchemy, and Marshmallow.
 ```
 install Flask/SQLAlchemy/Marshmallow
 ```
