@@ -12,7 +12,7 @@ Let's get the app set up first.
 
 1. Clone the git repository
 ```
-git clone https://google.com
+git clone git@github.com:kellycook301/pythonCLItest.git
 ```
 
 2. Install pip if you don't have that.
