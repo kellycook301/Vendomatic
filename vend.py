@@ -8,15 +8,8 @@ from app import beverage_schema
 import sys; print(sys.version)
 import os
 
-print ("")
-print ("O==============================================================================O")
-print ("|                             ++ Vending Machine ++                            |")
-print ("|                                  Let's Vend                                  |")
-print ("O==============================================================================O")
-print ("")
-
 def addBeverage():
-    oneBeverage = 'http://127.0.0.1:5000/beverage'
+    beverageEndpoint = 'http://127.0.0.1:5000/beverage'
     header = {"content-type": "application/json"}
     beveragePost = {}
     beveragePost["name"] = input("Enter a name: ").strip()
@@ -24,7 +17,23 @@ def addBeverage():
     beveragePost["price"] = input("Enter price of item (no need to add '$'): ").strip()
     beveragePost["quantity"] = input("Enter how many items you are adding: ").strip()
     print("")
-    print(requests.post(oneBeverage, data=json.dumps(beveragePost), headers=header, verify=False).text)
+    print(beveragePost)
+    print("")
+    answer = input("Does this look good to you? y/n \n").lower().strip()
+    if answer == "y":
+        print("")
+        print(requests.post(beverageEndpoint, data=json.dumps(beveragePost), headers=header, verify=False).text)
+    
+    elif answer == "n":
+        print("")
+        print("No problem, bud.")
+        print("")
+        vendingMachine()
+
+    else:
+        print("Try typing something that I actually understand, dummy.")
+        print("")
+        addBeverage()
 
 def getAllBeverages():
     allBeverages = 'http://127.0.0.1:5000/beverage'
@@ -33,18 +42,40 @@ def getAllBeverages():
     print(getAllBeveragesResponse.text)
 
 def getOneBeverage():
-    thatOneBeverage = 'http://127.0.0.1:5000/beverage/'
-    getOneResponse = requests.get(thatOneBeverage)
+    singleBeverage = 'http://127.0.0.1:5000/beverage/'
+    getOneResponse = requests.get(singleBeverage)
     userInput = input("Enter specific id: ").strip()
     print("")
-    print(requests.get(thatOneBeverage + userInput).text)
+    print(requests.get(singleBeverage + userInput).text)
 
 def deleteOneBeverage():
-    thatOneBeverage = 'http://127.0.0.1:5000/beverage/'
-    deleteOneResponse = requests.delete(thatOneBeverage)
+    singleBeverage = 'http://127.0.0.1:5000/beverage/'
+    deleteOneResponse = requests.delete(singleBeverage)
     userInput = input("Enter specific id: ").strip()
     print("")
-    print(requests.delete(thatOneBeverage + userInput).text)
+    print(requests.get(singleBeverage + userInput).text)
+    answer = input("Is this the beverage you are looking to delete? y/n \n").lower().strip()
+    if answer == "y":
+        print("")
+        print(requests.delete(singleBeverage + userInput).text)
+
+    elif answer == "n":
+        print("")
+        print("No problem, bud.")
+        print("")
+        vendingMachine()
+
+    else:
+        print("Try typing something that I actually understand, dummy.")
+        print("")
+        deleteOneBeverage()
+
+print ("")
+print ("O==============================================================================O")
+print ("|                             ++ Vending Machine ++                            |")
+print ("|                                  Let's Vend                                  |")
+print ("O==============================================================================O")
+print ("")
 
 def vendingMachine():
     vend = ""
@@ -52,9 +83,9 @@ def vendingMachine():
     print("Welcome to your local vending machine. What the heck do ya wanna do today?")
     print("")
     print("a) Check All Inventory")
-    print("b) Check Certain Inventory")
+    print("b) Check Certain Inventory Item")
     print("c) Make A Purchase")
-    print("d) Add Drinks")
+    print("d) Add Beverage")
     print("e) Get Rid Of A Beverage")
     print("f) Exit Vending Machine")
     print("")
