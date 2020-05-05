@@ -35,6 +35,17 @@ def addBeverage():
         print("")
         addBeverage()
 
+def purchaseOneBeverage():
+    beverageEndpoint = 'http://127.0.0.1:5000/beverage/'
+    userInput = input("Enter specific id: ").strip()
+    url = (beverageEndpoint + userInput)
+    data = json.loads(requests.get(beverageEndpoint + userInput).text)
+    quantity = (data['quantity'] - 1)
+    header = {"content-type": "application/json"}
+    print(requests.put(url, json=data, headers=header).text)
+    print(quantity)
+    print("STILL WORKING ON THIS")
+
 def getAllBeverages():
     allBeverages = 'http://127.0.0.1:5000/beverage'
     getAllBeveragesResponse = requests.get(allBeverages)
@@ -111,8 +122,7 @@ def vendingMachine():
     elif vend == "c":
         print("")
         print("Wanna make a purchase?")
-        print("Try again later.")
-        print("")
+        purchaseOneBeverage()
         print("")
         exit()
     
