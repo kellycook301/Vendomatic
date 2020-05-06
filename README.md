@@ -25,14 +25,14 @@ install pip
 install pipenv
 ```
 
-1. You are also gonna need Flask, SQLAlchemy, and Marshmallow.
-```
-install Flask/SQLAlchemy/Marshmallow
-```
-
-5. Run pipenv shell
+4. Run pipenv shell
 ```
 pipenv shell
+```
+
+5. You are also gonna need Flask, SQLAlchemy, and Marshmallow.
+```
+pipenv install flask flask-sqlalchemy flask-marshmallow marshmallow-sqlalchemy
 ```
 
 6. cd to the appropriate directory
